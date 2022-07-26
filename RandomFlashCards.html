@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random FlashCards</title>
+
+    <style>
+       
+       button {
+            border-radius: 25px;
+            height: 50px;
+            width: 100px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: lightblue;
+            border: solid rgb(152, 152, 214) 2px;
+            border-radius: 25px;;
+            height: 200px;
+            width: 150px;
+            margin: 10px;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        input {
+            width: 100px;
+            height: fit-content;
+            text-align: center;
+            border-radius: 25px;
+        }
+
+        p {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id = "container">
+        <div class = "card">
+            <p id = "number">1</p>
+            <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
+        </div>
+        <br>
+        <button id = "randomCard">New Card</button>
+    </div>
+    
+
+    <script>
+
+        let numberDisplay = document.getElementById("number");
+        let numberContainer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let nextCard = document.getElementById("randomCard");
+
+        function pickRandom() {
+            numberDisplay.innerText = numberContainer[Math.floor((Math.random()) * 10)];
+        }
+
+        nextCard.addEventListener("click", pickRandom);
+
+    </script>
+</body>
+</html>
