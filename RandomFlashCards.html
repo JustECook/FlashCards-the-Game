@@ -17,7 +17,7 @@
         .card {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             background: lightblue;
             border: solid rgb(152, 152, 214) 2px;
@@ -45,15 +45,24 @@
         p {
             font-size: 50px;
         }
+
+        .score-display {
+            text-align: center;
+        }
     </style>
 </head>
 
 
 <body>
     <div id = "container">
+        <div class = "score-display">
+            <p>Score</p>
+            <p id = "score">0</p>
+        </div>    
         <div class = "card">
             <p id = "number">1</p>
             <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
+            <button id = "check">Check Answer</button>
         </div>
         <br>
         <button id = "randomCard">New Card</button>
@@ -63,14 +72,27 @@
     <script>
 
         let numberDisplay = document.getElementById("number");
-        let numberContainer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let input = document.getElementById("input");
+        let check = document.getElementById("check")
         let nextCard = document.getElementById("randomCard");
 
+        let score = document.getElementById("score");
+
+        score = 0;
+
         function pickRandom() {
-            numberDisplay.innerText = numberContainer[Math.floor((Math.random()) * 10)];
+            numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
         }
 
         nextCard.addEventListener("click", pickRandom);
+
+        let count = 0;
+
+        function checkAnswer() {
+            score.innerHTML = 1 + count; 
+    }
+
+        check.addEventListener("click", checkAnswer);
 
     </script>
 </body>
