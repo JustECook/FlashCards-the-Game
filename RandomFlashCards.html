@@ -57,7 +57,7 @@
     <div id = "container">
         <div class = "score-display">
             <p>Score</p>
-            <p id = "score">0</p>
+            <p id = "tally">0</p>
         </div>    
         <div class = "card">
             <p id = "number">1</p>
@@ -71,28 +71,98 @@
 
     <script>
 
+        let score = document.querySelector("#tally");
+
         let numberDisplay = document.getElementById("number");
         let input = document.getElementById("input");
-        let check = document.getElementById("check")
-        let nextCard = document.getElementById("randomCard");
 
-        let score = document.getElementById("score");
+        let checkBtn = document.getElementById("check")
+        let nextCardBtn = document.getElementById("randomCard");
 
-        score = 0;
+        let count = 0;
 
         function pickRandom() {
             numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
         }
 
-        nextCard.addEventListener("click", pickRandom);
-
-        let count = 0;
+        nextCardBtn.addEventListener("click", pickRandom);
 
         function checkAnswer() {
-            score.innerHTML = 1 + count; 
-    }
+            if ((input.value === "one") && (numberDisplay.innerHTML === "1")) {
+                count += 1;
+                score.innerHTML = count;
+                pickRandom();
+                input.value = "";
+                } else {
+                    if ((input.value === "two") && (numberDisplay.innerHTML === "2")) {
+                    count += 1;
+                    score.innerHTML = count;
+                    pickRandom();
+                    input.value = "";
+                        } else {
+                            if ((input.value === "three") && (numberDisplay.innerHTML === "3")) {
+                        count += 1;
+                        score.innerHTML = count;
+                        pickRandom();
+                        input.value = "";
+                            } else {
+                                if ((input.value === "four") && (numberDisplay.innerHTML === "4")) {
+                            count += 1;
+                            score.innerHTML = count;
+                            pickRandom();
+                            input.value = "";
+                                } else {
+                                    if ((input.value === "five") && (numberDisplay.innerHTML === "5")) {
+                                count += 1;
+                                score.innerHTML = count;
+                                pickRandom();
+                                input.value = "";
+                                    } else {
+                                        if ((input.value === "six") && (numberDisplay.innerHTML === "6")) {
+                                    count += 1;
+                                    score.innerHTML = count;
+                                    pickRandom();
+                                    input.value = "";
+                                        } else {
+                                            if ((input.value === "seven") && (numberDisplay.innerHTML === "7")) {
+                                        count += 1;
+                                        score.innerHTML = count;
+                                        pickRandom();
+                                        input.value = "";
+                                            } else {
+                                                if ((input.value === "eight") && (numberDisplay.innerHTML === "8")) {
+                                            count += 1;
+                                            score.innerHTML = count;
+                                            pickRandom();
+                                            input.value = "";
+                                                } else {
+                                                    if ((input.value === "nine") && (numberDisplay.innerHTML === "9")) {
+                                                count += 1;
+                                                score.innerHTML = count;
+                                                pickRandom();
+                                                input.value = "";
+                                                    } else {
+                                                        if ((input.value === "ten") && (numberDisplay.innerHTML === "10")) {
+                                                    count += 1;
+                                                    score.innerHTML = count;
+                                                    pickRandom();
+                                                    input.value = "";
+                                                    } else {
+                                                        pickRandom();
+                                                        input.value = "";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-        check.addEventListener("click", checkAnswer);
+        checkBtn.addEventListener("click", checkAnswer);
 
     </script>
 </body>
