@@ -5,11 +5,8 @@ Random flash cards populate at the push of a button
 Another useful study tool. User's will click on a button to produce a random flash card. They will then have to enter the value in the provided text field.
 
 Updates:
-1. Added validation to check if input values match number displayed
-2. Added point system to award point for every correct answer
-3. Inputs clear after answer is checked
-
+1. Added timer bar at bottom of screen. Defaulted to 30s. Timer has 3 second delay to give user time to prepare
+2. Cards change color depending on value typed in.
 
 Future Updates:
-1. Add timer
-2. Temporarily change card colors based on correct/incorrect answers
+1. Change styling of app

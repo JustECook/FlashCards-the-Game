@@ -14,16 +14,16 @@
             width: 100px;
         }
 
-        .card {
+        #card {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: flex-start;
             align-items: center;
             background: lightblue;
             border: solid rgb(152, 152, 214) 2px;
             border-radius: 25px;;
-            height: 200px;
-            width: 150px;
+            height: 300px;
+            width: 225px;
             margin: 10px;
         }
         #container {
@@ -38,6 +38,7 @@
         input {
             width: 100px;
             height: fit-content;
+            font-size: 2em;
             text-align: center;
             border-radius: 25px;
         }
@@ -49,33 +50,67 @@
         .score-display {
             text-align: center;
         }
+
+        .timer {
+            position: relative;
+            top: 3px;
+            left: 5px;
+            width: 640px;
+            height: 44px;
+            background: white;
+            border-radius: 25px;
+            animation: grow 30s linear;
+            animation-delay: 3s;
+        }
+
+        .timer-shell {
+            
+            width: 650px;
+            height: 50px;
+            border-radius: 25px;
+            border: blue 4px solid;
+            background:rgb(152, 152, 214);
+        } 
+
+        @keyframes grow {
+            from {width: 0px;}
+            to {width: 640px;}
+        }
+
     </style>
 </head>
 
 
 <body>
     <div id = "container">
+        <!--<button id = "startBtn">Click to Begin</button>-->
         <div class = "score-display">
-            <p>Score</p>
+            <p id = "message">Score</p>
             <p id = "tally">0</p>
         </div>    
-        <div class = "card">
+        <div id = "card">
             <p id = "number">1</p>
             <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
+            <br>
             <button id = "check">Check Answer</button>
         </div>
         <br>
         <button id = "randomCard">New Card</button>
+        <br>
+        <div class = "timer-shell">
+            <div class = "timer"></div>
+        </div>
     </div>
     
 
     <script>
 
         let score = document.querySelector("#tally");
-
+        let card = document.getElementById("card");
         let numberDisplay = document.getElementById("number");
         let input = document.getElementById("input");
 
+        let startBtn = document.getElementById("startBtn")
         let checkBtn = document.getElementById("check")
         let nextCardBtn = document.getElementById("randomCard");
 
@@ -89,66 +124,88 @@
 
         function checkAnswer() {
             if ((input.value === "one") && (numberDisplay.innerHTML === "1")) {
+                turnGreen();
+                setTimeout(defaultLightBlue, 1500);
                 count += 1;
                 score.innerHTML = count;
                 pickRandom();
                 input.value = "";
                 } else {
                     if ((input.value === "two") && (numberDisplay.innerHTML === "2")) {
+                    turnGreen();
+                    setTimeout(defaultLightBlue, 1500);
                     count += 1;
                     score.innerHTML = count;
                     pickRandom();
                     input.value = "";
                         } else {
-                            if ((input.value === "three") && (numberDisplay.innerHTML === "3")) {
+                        if ((input.value === "three") && (numberDisplay.innerHTML === "3")) {
+                        turnGreen();
+                        setTimeout(defaultLightBlue, 1500);    
                         count += 1;
                         score.innerHTML = count;
                         pickRandom();
                         input.value = "";
                             } else {
                                 if ((input.value === "four") && (numberDisplay.innerHTML === "4")) {
-                            count += 1;
-                            score.innerHTML = count;
-                            pickRandom();
-                            input.value = "";
-                                } else {
-                                    if ((input.value === "five") && (numberDisplay.innerHTML === "5")) {
+                                turnGreen();
+                                setTimeout(defaultLightBlue, 1500);  
                                 count += 1;
                                 score.innerHTML = count;
                                 pickRandom();
                                 input.value = "";
-                                    } else {
-                                        if ((input.value === "six") && (numberDisplay.innerHTML === "6")) {
-                                    count += 1;
-                                    score.innerHTML = count;
-                                    pickRandom();
-                                    input.value = "";
-                                        } else {
-                                            if ((input.value === "seven") && (numberDisplay.innerHTML === "7")) {
+                                } else {
+                                    if ((input.value === "five") && (numberDisplay.innerHTML === "5")) {
+                                        turnGreen();
+                                        setTimeout(defaultLightBlue, 1500);
                                         count += 1;
                                         score.innerHTML = count;
                                         pickRandom();
                                         input.value = "";
-                                            } else {
-                                                if ((input.value === "eight") && (numberDisplay.innerHTML === "8")) {
+                                    } else {
+                                        if ((input.value === "six") && (numberDisplay.innerHTML === "6")) {
+                                            turnGreen();
+                                            setTimeout(defaultLightBlue, 1500);  
                                             count += 1;
                                             score.innerHTML = count;
                                             pickRandom();
                                             input.value = "";
-                                                } else {
-                                                    if ((input.value === "nine") && (numberDisplay.innerHTML === "9")) {
+                                        } else {
+                                            if ((input.value === "seven") && (numberDisplay.innerHTML === "7")) {
+                                                turnGreen();
+                                                setTimeout(defaultLightBlue, 1500);
                                                 count += 1;
                                                 score.innerHTML = count;
                                                 pickRandom();
                                                 input.value = "";
-                                                    } else {
-                                                        if ((input.value === "ten") && (numberDisplay.innerHTML === "10")) {
+                                            } else {
+                                                if ((input.value === "eight") && (numberDisplay.innerHTML === "8")) {
+                                                    turnGreen();
+                                                    setTimeout(defaultLightBlue, 1500);
                                                     count += 1;
                                                     score.innerHTML = count;
                                                     pickRandom();
                                                     input.value = "";
+                                                        } else {
+                                                    if ((input.value === "nine") && (numberDisplay.innerHTML === "9")) {
+                                                        turnGreen();
+                                                        setTimeout(defaultLightBlue, 1500);
+                                                        count += 1;
+                                                        score.innerHTML = count;
+                                                        pickRandom();
+                                                        input.value = "";
+                                                    } else {
+                                                        if ((input.value === "ten") && (numberDisplay.innerHTML === "10")) {
+                                                            turnGreen();
+                                                            setTimeout(defaultLightBlue, 1500);
+                                                            count += 1;
+                                                            score.innerHTML = count;
+                                                            pickRandom();
+                                                            input.value = "";
                                                     } else {
                                                         pickRandom();
+                                                        turnRed();
+                                                        setTimeout(defaultLightBlue, 1500);
                                                         input.value = "";
                                                     }
                                                 }
@@ -163,6 +220,55 @@
             }
 
         checkBtn.addEventListener("click", checkAnswer);
+
+        function turnGreen() {
+            card.style.background = "#23dca2";
+        }
+
+        function turnRed() {
+            card.style.background = "#E9838E";
+        }
+
+        function defaultLightBlue() {
+            card.style.background = "lightblue";
+        }
+
+        function gameOver() {
+            let timer = document.querySelector(".timer");
+            let message = document.getElementById("message");
+            if (timer.clientWidth === 640) { 
+                message.innerHTML = "Final Score"; 
+            }
+        }
+
+       setInterval(gameOver, 3100);
+
+       function gameStart3() {
+        let message = document.getElementById("message");
+        message.innerHTML = "3";
+
+       setTimeout(gameStart2, 1000);
+       setTimeout(gameStart1, 2000);
+       setTimeout(gameStartGo, 3000);
+       }
+
+       function gameStart2() {
+        let message = document.getElementById("message");
+        message.innerHTML = "2";
+       }
+
+       function gameStart1() {
+        let message = document.getElementById("message");
+        message.innerHTML = "1";
+       }
+
+       function gameStartGo() {
+        let message = document.getElementById("message");
+        message.innerHTML = "GO!";
+       }
+       gameStart3();
+       //startBtn.addEventListener("click", gameStart3);
+       
 
     </script>
 </body>
