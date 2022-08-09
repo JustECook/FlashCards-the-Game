@@ -269,6 +269,14 @@
        gameStart3();
        //startBtn.addEventListener("click", gameStart3);
        
+       function inputLockOut() {
+        let timer = document.querySelector(".timer");
+        if (timer.clientWidth === 640) {
+            input.style.display = "none";
+        }
+       }
+
+       setInterval(inputLockOut, 5000);
 
     </script>
 </body>
