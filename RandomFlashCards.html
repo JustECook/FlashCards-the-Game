@@ -7,11 +7,19 @@
     <title>Random FlashCards</title>
 
     <style>
-       
+       body {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        background:rgb(214, 214, 231)
+       }
+
        button {
             border-radius: 25px;
             height: 50px;
-            width: 100px;
+            width: 150px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.25em;
         }
 
         #card {
@@ -25,6 +33,26 @@
             height: 300px;
             width: 225px;
             margin: 10px;
+        }
+
+        #circle {
+            position: absolute;
+            height: 225px;
+            width: 225px;
+            border-radius: 50%;
+            background-color: coral;
+            opacity: 20%;
+        }
+
+        #circle-2 {
+            position: absolute;
+            height: 125px;
+            width: 125px;
+            right: 1%;
+            bottom: 6%;
+            border-radius: 50%;
+            background-color: coral;
+            opacity: 20%;
         }
         #container {
             display: flex;
@@ -45,10 +73,40 @@
 
         p {
             font-size: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 10px;
+        }
+
+        #square {
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            opacity: 20%;
+            background-color: blueviolet;
+            transform: rotate(45deg);
+            /*animation: slowSpin 60s linear infinite;*/
+        }
+
+        /*@keyframes slowSpin {
+            0% {transform: rotate(0deg)}
+            100% {transform: rotate(360deg)};
+        }*/
+
+        #square-2 {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            right: -3%;
+            bottom: 8%;
+            opacity: 20%;
+            background-color: blueviolet;
+            transform: rotate(75deg);
         }
 
         .score-display {
-            text-align: center;
+            display: flex;
+            justify-content: Center;
+            width: 100vw;
         }
 
         .timer {
@@ -82,6 +140,8 @@
 
 
 <body>
+    <div id = "square"></div>
+    <div id = "circle"></div>
     <div id = "container">
         <!--<button id = "startBtn">Click to Begin</button>-->
         <div class = "score-display">
@@ -89,7 +149,7 @@
             <p id = "tally">0</p>
         </div>    
         <div id = "card">
-            <p id = "number">1</p>
+            <p id = "number"></p>
             <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
             <br>
             <button id = "check">Check Answer</button>
@@ -101,6 +161,8 @@
             <div class = "timer"></div>
         </div>
     </div>
+    <div id = "square-2"></div>
+    <div id = "circle-2"></div>
     
 
     <script>
@@ -237,16 +299,17 @@
             let timer = document.querySelector(".timer");
             let message = document.getElementById("message");
             if (timer.clientWidth === 640) { 
-                message.innerHTML = "Final Score"; 
+                message.innerHTML = "Final Score: "; 
+                gameLockOut();
             }
         }
 
-       setInterval(gameOver, 3100);
+       setInterval(gameOver, 3050);
 
        function gameStart3() {
         let message = document.getElementById("message");
-        message.innerHTML = "3";
-
+        message.innerHTML = "Ready";
+        tally.style.display = "none";
        setTimeout(gameStart2, 1000);
        setTimeout(gameStart1, 2000);
        setTimeout(gameStartGo, 3000);
@@ -254,29 +317,35 @@
 
        function gameStart2() {
         let message = document.getElementById("message");
-        message.innerHTML = "2";
+        message.innerHTML = "Set";
        }
 
        function gameStart1() {
         let message = document.getElementById("message");
-        message.innerHTML = "1";
+        message.innerHTML = "Go";
        }
 
        function gameStartGo() {
         let message = document.getElementById("message");
-        message.innerHTML = "GO!";
-       }
+        message.innerHTML = "Score: ";
+        tally.style.display = "block";
+        numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
+        }
+       
        gameStart3();
        //startBtn.addEventListener("click", gameStart3);
        
-       function inputLockOut() {
-        let timer = document.querySelector(".timer");
-        if (timer.clientWidth === 640) {
-            input.style.display = "none";
-        }
-       }
+       function gameLockOut() {
+            function gameOverCardDisplay() {
+                input.style.display = "none";
+                numberDisplay.style.fontSize = "6em";
+            }
+            let timer = document.querySelector(".timer");
 
-       setInterval(inputLockOut, 5000);
+            if (timer.clientWidth === 640) {
+            gameOverCardDisplay();
+            }
+        }
 
     </script>
 </body>
