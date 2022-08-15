@@ -7,6 +7,8 @@
     <title>Random FlashCards</title>
 
     <style>
+
+       
        body {
         overflow: hidden;
         height: 100vh;
@@ -25,13 +27,13 @@
         #card {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             background: lightblue;
             border: solid rgb(152, 152, 214) 2px;
             border-radius: 25px;;
-            height: 300px;
-            width: 225px;
+            height: 400px;
+            width: 300px;
             margin: 10px;
         }
 
@@ -71,9 +73,14 @@
             border-radius: 25px;
         }
 
+        #number {
+            color: black;
+        }
+
         p {
             font-size: 50px;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: fantasy;
+            color:rgb(126, 126, 241);
             padding: 10px;
         }
 
@@ -84,13 +91,13 @@
             opacity: 20%;
             background-color: blueviolet;
             transform: rotate(45deg);
-            /*animation: slowSpin 60s linear infinite;*/
+            animation: slowSpin 180s linear infinite;
         }
 
-        /*@keyframes slowSpin {
-            0% {transform: rotate(0deg)}
-            100% {transform: rotate(360deg)};
-        }*/
+        @keyframes slowSpin {
+            0% {transform: rotate(45deg)};
+            100% {transform: rotate(405deg)};
+        }
 
         #square-2 {
             position: absolute;
@@ -117,23 +124,35 @@
             height: 44px;
             background: white;
             border-radius: 25px;
-            animation: grow 30s linear;
+            animation: grow 45s linear;
             animation-delay: 3s;
         }
 
+        @keyframes grow {
+            from {width: 0px;};
+            to {width: 640px;};
+        }
+
         .timer-shell {
-            
             width: 650px;
             height: 50px;
             border-radius: 25px;
-            border: blue 4px solid;
+            border: rgb(126, 126, 241) 4px solid;
             background:rgb(152, 152, 214);
         } 
 
-        @keyframes grow {
-            from {width: 0px;}
-            to {width: 640px;}
-        }
+       #triangle {
+            position: absolute;
+            bottom: -10%;
+            left: 5%;
+            transform: rotate(45deg);
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid red;
+            opacity: 20%;
+       }
 
     </style>
 </head>
@@ -142,7 +161,9 @@
 <body>
     <div id = "square"></div>
     <div id = "circle"></div>
-    <div id = "container">
+    <div id = "triangle"></div>
+    <br><br><br><br>
+       <div id = "container">
         <!--<button id = "startBtn">Click to Begin</button>-->
         <div class = "score-display">
             <p id = "message">Score</p>
@@ -192,6 +213,7 @@
                 score.innerHTML = count;
                 pickRandom();
                 input.value = "";
+                input.focus();
                 } else {
                     if ((input.value === "two") && (numberDisplay.innerHTML === "2")) {
                     turnGreen();
@@ -200,6 +222,7 @@
                     score.innerHTML = count;
                     pickRandom();
                     input.value = "";
+                    input.focus();
                         } else {
                         if ((input.value === "three") && (numberDisplay.innerHTML === "3")) {
                         turnGreen();
@@ -208,6 +231,7 @@
                         score.innerHTML = count;
                         pickRandom();
                         input.value = "";
+                        input.focus();
                             } else {
                                 if ((input.value === "four") && (numberDisplay.innerHTML === "4")) {
                                 turnGreen();
@@ -216,6 +240,7 @@
                                 score.innerHTML = count;
                                 pickRandom();
                                 input.value = "";
+                                input.focus();
                                 } else {
                                     if ((input.value === "five") && (numberDisplay.innerHTML === "5")) {
                                         turnGreen();
@@ -224,6 +249,7 @@
                                         score.innerHTML = count;
                                         pickRandom();
                                         input.value = "";
+                                        input.focus();
                                     } else {
                                         if ((input.value === "six") && (numberDisplay.innerHTML === "6")) {
                                             turnGreen();
@@ -232,6 +258,7 @@
                                             score.innerHTML = count;
                                             pickRandom();
                                             input.value = "";
+                                            input.focus();
                                         } else {
                                             if ((input.value === "seven") && (numberDisplay.innerHTML === "7")) {
                                                 turnGreen();
@@ -240,6 +267,7 @@
                                                 score.innerHTML = count;
                                                 pickRandom();
                                                 input.value = "";
+                                                input.focus();
                                             } else {
                                                 if ((input.value === "eight") && (numberDisplay.innerHTML === "8")) {
                                                     turnGreen();
@@ -248,6 +276,7 @@
                                                     score.innerHTML = count;
                                                     pickRandom();
                                                     input.value = "";
+                                                    input.focus();
                                                         } else {
                                                     if ((input.value === "nine") && (numberDisplay.innerHTML === "9")) {
                                                         turnGreen();
@@ -256,6 +285,7 @@
                                                         score.innerHTML = count;
                                                         pickRandom();
                                                         input.value = "";
+                                                        input.focus();
                                                     } else {
                                                         if ((input.value === "ten") && (numberDisplay.innerHTML === "10")) {
                                                             turnGreen();
@@ -264,11 +294,13 @@
                                                             score.innerHTML = count;
                                                             pickRandom();
                                                             input.value = "";
+                                                            input.focus();
                                                     } else {
                                                         pickRandom();
                                                         turnRed();
                                                         setTimeout(defaultLightBlue, 1500);
                                                         input.value = "";
+                                                        input.focus();
                                                     }
                                                 }
                                             }
@@ -329,6 +361,7 @@
         let message = document.getElementById("message");
         message.innerHTML = "Score: ";
         tally.style.display = "block";
+        input.focus();
         numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
         }
        
@@ -338,7 +371,9 @@
        function gameLockOut() {
             function gameOverCardDisplay() {
                 input.style.display = "none";
-                numberDisplay.style.fontSize = "6em";
+                numberDisplay.innerHTML = "";
+                checkBtn.style.display = "none";
+                nextCardBtn.style.display = "none";
             }
             let timer = document.querySelector(".timer");
 
@@ -347,6 +382,16 @@
             }
         }
 
+        nextCardBtn.addEventListener("keydown", enterTest);
+
+        function enterTest(e) {
+            if (e.keyCode === 13) {
+                console.log("It worked");
+                
+            }
+        }
+
+       
     </script>
 </body>
 </html>
