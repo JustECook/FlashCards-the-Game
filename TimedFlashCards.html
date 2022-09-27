@@ -18,10 +18,11 @@
 
        button {
             border-radius: 25px;
-            height: 50px;
-            width: 150px;
+            min-height: 15%;
+            min-width: 40%;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 1.25em;
+            font-size: 1em;
+            padding: 0.5em;
         }
 
         #card {
@@ -32,9 +33,14 @@
             background: lightblue;
             border: solid rgb(152, 152, 214) 2px;
             border-radius: 25px;
-            height: 400px;
-            width: 300px;
-            margin: 10px;
+            height: 40%;
+            width: 35%;
+            margin: 0.5em;
+        }
+
+        #card p {
+            font-size: 44px;
+            padding: 0em;
         }
 
         #circle {
@@ -59,18 +65,19 @@
         #container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
             width: 100vw;
         }
 
         input {
-            width: 100px;
+            width: 70%;
             height: fit-content;
             font-size: 2em;
             text-align: center;
             border-radius: 25px;
+            padding: 0em;
         }
 
         #number {
@@ -81,7 +88,7 @@
             font-size: 52px;
             font-family: fantasy;
             color:rgb(126, 126, 241);
-            padding: 10px;
+            padding: 0.5em;
         }
 
         #square {
@@ -117,10 +124,10 @@
 
         .timer {
             position: relative;
-            top: 3px;
-            left: 5px;
-            width: 640px;
-            height: 44px;
+            top: 1px;
+            left: 2px;
+            width: 475px;
+            height: 95%;
             background: white;
             border-radius: 25px;
             animation: grow 45s linear;
@@ -128,13 +135,13 @@
         }
 
         @keyframes grow {
-            from {width: 0px;};
-            to {width: 640px;};
+            from {width: 0%;};
+            to {width: 75%;};
         }
 
         .timer-shell {
-            width: 650px;
-            height: 50px;
+            width: 480px;
+            height: 4%;
             border-radius: 25px;
             border: rgb(126, 126, 241) 4px solid;
             background:rgb(152, 152, 214);
@@ -169,13 +176,13 @@
             <p id = "tally">0</p>
         </div>    
         <div id = "card">
-            <p id = "number"></p>
+            <p id = "number">--</p>
             <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
             <br>
-            <button id = "check">Check Answer</button>
+            <button id = "check">Check/New Card</button>
         </div>
-        <br>
-        <button id = "randomCard">New Card</button>
+        <!-- <br> -->
+        <!-- <button id = "randomCard">New Card</button> -->
         <br>
         <div class = "timer-shell">
             <div class = "timer"></div>
@@ -194,15 +201,16 @@
 
         let startBtn = document.getElementById("startBtn")
         let checkBtn = document.getElementById("check")
-        let nextCardBtn = document.getElementById("randomCard");
+        // let nextCardBtn = document.getElementById("randomCard");
 
         let count = 0;
 
         function pickRandom() {
             numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
         }
+        
 
-        nextCardBtn.addEventListener("click", pickRandom);
+        // nextCardBtn.addEventListener("click", pickRandom);
 
         function checkAnswer() {
             if ((input.value === "one") && (numberDisplay.innerHTML === "1")) {
@@ -329,7 +337,7 @@
         function gameOver() {
             let timer = document.querySelector(".timer");
             let message = document.getElementById("message");
-            if (timer.clientWidth === 640) { 
+            if (timer.clientWidth === 475) { 
                 message.innerHTML = "Final Score: "; 
                 gameLockOut();
             }
@@ -372,23 +380,22 @@
                 input.style.display = "none";
                 numberDisplay.innerHTML = "";
                 checkBtn.style.display = "none";
-                nextCardBtn.style.display = "none";
             }
             let timer = document.querySelector(".timer");
 
-            if (timer.clientWidth === 640) {
+            if (timer.clientWidth === 475) {
             gameOverCardDisplay();
             }
         }
 
-        nextCardBtn.addEventListener("keydown", enterTest);
+        // nextCardBtn.addEventListener("keydown", enterTest);
 
-        function enterTest(e) {
-            if (e.keyCode === 13) {
-                console.log("It worked");
+        // function enterTest(e) {
+        //     if (e.keyCode === 13) {
+        //         console.log("It worked");
                 
-            }
-        }
+        //     }
+        // }
 
        
     </script>
