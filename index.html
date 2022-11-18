@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timed Flash Cards</title>
+
+    <style>
+
+       
+       body {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        background:rgb(214, 214, 231);
+       }
+
+       button {
+            border-radius: 25px;
+            min-height: 15%;
+            min-width: 40%;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1em;
+            padding: 0.5em;
+        }
+
+        #card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: lightblue;
+            border: solid rgb(152, 152, 214) 2px;
+            border-radius: 25px;
+            height: 40%;
+            width: 35%;
+            margin: 0.5em;
+        }
+
+        #card p {
+            font-size: 44px;
+            padding: 0em;
+        }
+
+        #circle {
+            position: absolute;
+            height: 225px;
+            width: 225px;
+            border-radius: 50%;
+            background-color: coral;
+            opacity: 20%;
+        }
+
+        #circle-2 {
+            position: absolute;
+            height: 125px;
+            width: 125px;
+            right: 1%;
+            bottom: 6%;
+            border-radius: 50%;
+            background-color: coral;
+            opacity: 20%;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        input {
+            width: 70%;
+            height: fit-content;
+            font-size: 2em;
+            text-align: center;
+            border-radius: 25px;
+            padding: 0em;
+        }
+
+        #number {
+            color: black;
+        }
+
+        p {
+            font-size: 52px;
+            font-family: fantasy;
+            color:rgb(126, 126, 241);
+            padding: 0.5em;
+        }
+
+        #square {
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            opacity: 20%;
+            background-color: blueviolet;
+            transform: rotate(45deg);
+            animation: slowSpin 180s linear infinite;
+        }
+
+        @keyframes slowSpin {
+            100% {transform: rotate(360deg)};
+        }
+
+        #square-2 {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            right: -3%;
+            bottom: 8%;
+            opacity: 20%;
+            background-color: blueviolet;
+            transform: rotate(75deg);
+        }
+
+        .score-display {
+            display: flex;
+            justify-content: Center;
+            width: 100vw;
+        }
+
+        .timer {
+            position: relative;
+            top: 1px;
+            left: 2px;
+            width: 475px;
+            height: 95%;
+            background: white;
+            border-radius: 25px;
+            animation: grow 45s linear;
+            animation-delay: 3s;
+        }
+
+        @keyframes grow {
+            from {width: 0%;};
+            to {width: 75%;};
+        }
+
+        .timer-shell {
+            width: 480px;
+            height: 4%;
+            border-radius: 25px;
+            border: rgb(126, 126, 241) 4px solid;
+            background:rgb(152, 152, 214);
+        } 
+
+       #triangle {
+            position: absolute;
+            bottom: -10%;
+            left: 5%;
+            transform: rotate(45deg);
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 200px solid red;
+            opacity: 20%;
+       }
+
+    </style>
+</head>
+
+
+<body>
+    <div id = "square"></div>
+    <div id = "circle"></div>
+    <div id = "triangle"></div>
+
+       <div id = "container">
+        <!--<button id = "startBtn">Click to Begin</button>-->
+        <div class = "score-display">
+            <p id = "message">Score</p>
+            <p id = "tally">0</p>
+        </div>    
+        <div id = "card">
+            <p id = "number">--</p>
+            <input id = "input" class = "entry" type = "text" value = "" maxlength = "10">
+            <br>
+            <button id = "check">Check/New Card</button>
+        </div>
+        <!-- <br> -->
+        <!-- <button id = "randomCard">New Card</button> -->
+        <br>
+        <div class = "timer-shell">
+            <div class = "timer"></div>
+        </div>
+    </div>
+    <div id = "square-2"></div>
+    <div id = "circle-2"></div>
+    
+
+    <script>
+
+        let score = document.querySelector("#tally");
+        let card = document.getElementById("card");
+        let numberDisplay = document.getElementById("number");
+        let input = document.getElementById("input");
+
+        let startBtn = document.getElementById("startBtn")
+        let checkBtn = document.getElementById("check")
+        // let nextCardBtn = document.getElementById("randomCard");
+
+        let count = 0;
+
+        function pickRandom() {
+            numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
+        }
+        
+
+        // nextCardBtn.addEventListener("click", pickRandom);
+
+        function checkAnswer() {
+            if ((input.value === "one") && (numberDisplay.innerHTML === "1")) {
+                turnGreen();
+                setTimeout(defaultLightBlue, 1500);
+                count += 1;
+                score.innerHTML = count;
+                pickRandom();
+                input.value = "";
+                input.focus();
+                } else {
+                    if ((input.value === "two") && (numberDisplay.innerHTML === "2")) {
+                    turnGreen();
+                    setTimeout(defaultLightBlue, 1500);
+                    count += 1;
+                    score.innerHTML = count;
+                    pickRandom();
+                    input.value = "";
+                    input.focus();
+                        } else {
+                        if ((input.value === "three") && (numberDisplay.innerHTML === "3")) {
+                        turnGreen();
+                        setTimeout(defaultLightBlue, 1500);    
+                        count += 1;
+                        score.innerHTML = count;
+                        pickRandom();
+                        input.value = "";
+                        input.focus();
+                            } else {
+                                if ((input.value === "four") && (numberDisplay.innerHTML === "4")) {
+                                turnGreen();
+                                setTimeout(defaultLightBlue, 1500);  
+                                count += 1;
+                                score.innerHTML = count;
+                                pickRandom();
+                                input.value = "";
+                                input.focus();
+                                } else {
+                                    if ((input.value === "five") && (numberDisplay.innerHTML === "5")) {
+                                        turnGreen();
+                                        setTimeout(defaultLightBlue, 1500);
+                                        count += 1;
+                                        score.innerHTML = count;
+                                        pickRandom();
+                                        input.value = "";
+                                        input.focus();
+                                    } else {
+                                        if ((input.value === "six") && (numberDisplay.innerHTML === "6")) {
+                                            turnGreen();
+                                            setTimeout(defaultLightBlue, 1500);  
+                                            count += 1;
+                                            score.innerHTML = count;
+                                            pickRandom();
+                                            input.value = "";
+                                            input.focus();
+                                        } else {
+                                            if ((input.value === "seven") && (numberDisplay.innerHTML === "7")) {
+                                                turnGreen();
+                                                setTimeout(defaultLightBlue, 1500);
+                                                count += 1;
+                                                score.innerHTML = count;
+                                                pickRandom();
+                                                input.value = "";
+                                                input.focus();
+                                            } else {
+                                                if ((input.value === "eight") && (numberDisplay.innerHTML === "8")) {
+                                                    turnGreen();
+                                                    setTimeout(defaultLightBlue, 1500);
+                                                    count += 1;
+                                                    score.innerHTML = count;
+                                                    pickRandom();
+                                                    input.value = "";
+                                                    input.focus();
+                                                        } else {
+                                                    if ((input.value === "nine") && (numberDisplay.innerHTML === "9")) {
+                                                        turnGreen();
+                                                        setTimeout(defaultLightBlue, 1500);
+                                                        count += 1;
+                                                        score.innerHTML = count;
+                                                        pickRandom();
+                                                        input.value = "";
+                                                        input.focus();
+                                                    } else {
+                                                        if ((input.value === "ten") && (numberDisplay.innerHTML === "10")) {
+                                                            turnGreen();
+                                                            setTimeout(defaultLightBlue, 1500);
+                                                            count += 1;
+                                                            score.innerHTML = count;
+                                                            pickRandom();
+                                                            input.value = "";
+                                                            input.focus();
+                                                    } else {
+                                                        pickRandom();
+                                                        turnRed();
+                                                        setTimeout(defaultLightBlue, 1500);
+                                                        input.value = "";
+                                                        input.focus();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        checkBtn.addEventListener("click", checkAnswer);
+
+        function turnGreen() {
+            card.style.background = "#23dca2";
+        }
+
+        function turnRed() {
+            card.style.background = "#E9838E";
+        }
+
+        function defaultLightBlue() {
+            card.style.background = "lightblue";
+        }
+
+        function gameOver() {
+            let timer = document.querySelector(".timer");
+            let message = document.getElementById("message");
+            if (timer.clientWidth === 475) { 
+                message.innerHTML = "Final Score: "; 
+                gameLockOut();
+            }
+        }
+
+       setInterval(gameOver, 3500);
+
+       function gameStart3() {
+        let message = document.getElementById("message");
+        message.innerHTML = "Ready";
+        tally.style.display = "none";
+       setTimeout(gameStart2, 1000);
+       setTimeout(gameStart1, 2000);
+       setTimeout(gameStartGo, 3000);
+       }
+
+       function gameStart2() {
+        let message = document.getElementById("message");
+        message.innerHTML = "Set";
+       }
+
+       function gameStart1() {
+        let message = document.getElementById("message");
+        message.innerHTML = "Go";
+       }
+
+       function gameStartGo() {
+        let message = document.getElementById("message");
+        message.innerHTML = "Score: ";
+        tally.style.display = "block";
+        input.focus();
+        numberDisplay.innerText = Math.floor((Math.random() * 10) + 1);
+        }
+       
+       gameStart3();
+       //startBtn.addEventListener("click", gameStart3);
+       
+       function gameLockOut() {
+            function gameOverCardDisplay() {
+                input.style.display = "none";
+                numberDisplay.innerHTML = "";
+                checkBtn.style.display = "none";
+            }
+            let timer = document.querySelector(".timer");
+
+            if (timer.clientWidth === 475) {
+            gameOverCardDisplay();
+            }
+        }
+
+        // nextCardBtn.addEventListener("keydown", enterTest);
+
+        // function enterTest(e) {
+        //     if (e.keyCode === 13) {
+        //         console.log("It worked");
+                
+        //     }
+        // }
+
+       
+    </script>
+</body>
+</html>
